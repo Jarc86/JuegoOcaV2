@@ -78,7 +78,7 @@ public class JuegoOcaV2 {
                             System.out.println("El jugador se desplaza a la casilla: "+jugador);
                             break;
                         case 6:
-                            System.out.println("El jugador ha caído en el puente bueno, va a la casilla 12");
+                            System.out.println("El jugador ha caído en el puente bueno, va a la casilla 12 y vuelve a tirar");
                             dado = r.nextInt(6)+1;
                             System.out.println("Ha sacado un "+dado+" en la tirada extra");
                             jugador = 12+dado;
@@ -138,7 +138,7 @@ public class JuegoOcaV2 {
                             System.out.println("El jugador se desplaza a la casilla: "+jugador);
                             break;
                         case 26:
-                            System.out.println("El jugador ha caído en el la casilla de dados, viaja a la casilla 53");
+                            System.out.println("El jugador ha caído en el la casilla de dados, viaja a la casilla 53 y tira otra vez");
                             jugador = 53;
                             dado = r.nextInt(6)+1;
                             System.out.println("Ha sacado un "+dado+" en la tirada extra");
@@ -222,7 +222,7 @@ public class JuegoOcaV2 {
                             System.out.println("El jugador se desplaza a la casilla: "+jugador);
                             break;
                         case 52:
-                            System.out.println("El jugador ha caído en La Prision... :(");
+                            System.out.println("El jugador ha caído en La Prision. Pierde dos turnos... :(");
                             if(turno == 1){
                                 jugador1 = jugador;
                                 turno = 0;
@@ -238,7 +238,7 @@ public class JuegoOcaV2 {
                             }
                             break;
                         case 53:
-                            System.out.println("El jugador ha caído en la casilla de dados, vuelve a la casilla 26");
+                            System.out.println("El jugador ha caído en la casilla de dados, vuelve a la casilla 26 y tira otra vez");
                             jugador = 26;
                             dado = r.nextInt(6)+1;
                             System.out.println("Ha sacado un "+dado+" en la tirada extra");
