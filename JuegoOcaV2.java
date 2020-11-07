@@ -14,7 +14,8 @@ public class JuegoOcaV2 {
             int dado,turno=1,jugador,jugador1=0,jugador2=0, contador1=0, contador2=0;
             String ganador = " ",oca = "¡El jugador ha caido en una oca, avanza a la siguiente y vuelve a tirar!";
             boolean fin = false, repite = true,J1pierde1Turno= false, J2pierde1Turno= false, J1pierde2Turnos = false, J2pierde2Turnos=false; 
-                   
+                
+            //Bucle general que controla la partida 
             do {     
                 //Seccion de código que controla las pérdidas de turno
                 if (turno == 1 && J1pierde1Turno) {
@@ -37,11 +38,11 @@ public class JuegoOcaV2 {
                     if(contador2==0)
                     J2pierde2Turnos = false;
                 }
-                
-                //Bloque de tiradas, sólo se tira si ninguno ha llegado ya a 63
+                        //Bloque de tiradas, si turno es igual a 1 el jugador actual pasa a ser el jugado 1
+                        //Si el turno no es uno el jugador actual pasa a ser el jugador 2
                         if (turno==1) {
                         System.out.println("");
-                        System.out.println("Turno de jugador1");
+                        System.out.println("Turno de Jugador 1");
                         System.out.println("Casilla Actual -> "+jugador1);
                         System.out.println("¡Pulsa Enter para tirar!");
                         pause.nextLine();
@@ -52,7 +53,7 @@ public class JuegoOcaV2 {
                         System.out.println("El jugador se desplaza a la casilla: "+jugador);
                         }else{
                         System.out.println("");
-                        System.out.println("Turno de jugador2");
+                        System.out.println("Turno de Jugador 2");
                         System.out.println("Casilla Actual -> "+jugador2);
 
                         System.out.println("¡Pulsa Enter para tirar!");
@@ -64,46 +65,38 @@ public class JuegoOcaV2 {
                         System.out.println("El jugador se desplaza a la casilla: "+jugador);
                         }
 
-                //Bloque de los puentes
-                if (jugador == 6) {
-                    System.out.println("El jugador ha caído en el puente bueno, va a la casilla 12");
-                    dado = r.nextInt(6)+1;
-                    System.out.println("Ha sacado un "+dado+" en la tirada extra");
-                    jugador = 12+dado;
-                    System.out.println("El jugador se desplaza a la casilla: "+jugador);
-                }else if(jugador == 12){
-                    System.out.println("El jugador ha caído en el puente malo, vuelve a la casilla 6");
-                    dado = r.nextInt(6)+1;
-                    System.out.println("Ha sacado un "+dado+" en la tirada extra");
-                    jugador = 6+dado;
-                    System.out.println("El jugador se desplaza a la casilla: "+jugador);
-                } 
-                //Bloque de los dados
-                if (jugador == 26) {
-                    System.out.println("El jugador ha caído en el la casilla de dados, viaja a la casilla 53");
-                    jugador = 53;
-                    dado = r.nextInt(6)+1;
-                    System.out.println("Ha sacado un "+dado+" en la tirada extra");
-                    jugador += dado;
-                    System.out.println("El jugador se desplaza a la casilla: "+jugador);
-                }else if(jugador == 53){
-                    System.out.println("El jugador ha caído en la casilla de dados, vuelve a la casilla 26");
-                    jugador = 26;
-                    dado = r.nextInt(6)+1;
-                    System.out.println("Ha sacado un "+dado+" en la tirada extra");
-                    jugador += dado;
-                    System.out.println("El jugador se desplaza a la casilla: "+jugador);
-                } 
-                    //Este bucle controla las tiradas que caen en ocas
+                    //Este bucle controla las caídas en casillas especiales
                     while (repite){
  
                         switch (jugador) {
                         case 5:
                             System.out.println(oca);
+                            System.out.println("El jugador avanza a la 9 y tira");
+                            dado = r.nextInt(6)+1;
+                            System.out.println("Ha sacado un "+dado+" en la tirada extra");
+                            jugador =9+dado;
+                            System.out.println("El jugador se desplaza a la casilla: "+jugador);
+                            break;
+                        case 6:
+                            System.out.println("El jugador ha caído en el puente bueno, va a la casilla 12");
+                            dado = r.nextInt(6)+1;
+                            System.out.println("Ha sacado un "+dado+" en la tirada extra");
+                            jugador = 12+dado;
+                            System.out.println("El jugador se desplaza a la casilla: "+jugador);
+                            break;
+                        case 9:
+                            System.out.println(oca);
                             System.out.println("El jugador avanza a la 14 y tira");
                             dado = r.nextInt(6)+1;
                             System.out.println("Ha sacado un "+dado+" en la tirada extra");
                             jugador =14+dado;
+                            System.out.println("El jugador se desplaza a la casilla: "+jugador);
+                            break;
+                        case 12:
+                            System.out.println("El jugador ha caído en el puente malo, vuelve a la casilla 6");
+                            dado = r.nextInt(6)+1;
+                            System.out.println("Ha sacado un "+dado+" en la tirada extra");
+                            jugador = 6+dado;
                             System.out.println("El jugador se desplaza a la casilla: "+jugador);
                             break;
                         case 13:    
@@ -138,6 +131,14 @@ public class JuegoOcaV2 {
                             dado = r.nextInt(6)+1;
                             System.out.println("¡Ha sacado un "+dado+" en la tirada extra!");
                             jugador =27+dado;
+                            System.out.println("El jugador se desplaza a la casilla: "+jugador);
+                            break;
+                        case 26:
+                            System.out.println("El jugador ha caído en el la casilla de dados, viaja a la casilla 53");
+                            jugador = 53;
+                            dado = r.nextInt(6)+1;
+                            System.out.println("Ha sacado un "+dado+" en la tirada extra");
+                            jugador += dado;
                             System.out.println("El jugador se desplaza a la casilla: "+jugador);
                             break;
                         case 27:
@@ -220,18 +221,33 @@ public class JuegoOcaV2 {
                                 repite = false;
                             }
                             break;
-                        case 54:
-                            System.out.println(oca);
+                        case 53:
+                            System.out.println("El jugador ha caído en la casilla de dados, vuelve a la casilla 26");
+                            jugador = 26;
                             dado = r.nextInt(6)+1;
-                            System.out.println("¡Ha sacado un "+dado+" en la tirada extra!");
+                            System.out.println("Ha sacado un "+dado+" en la tirada extra");
                             jugador += dado;
                             System.out.println("El jugador se desplaza a la casilla: "+jugador);
+                            break;
+                        case 54:
+                            System.out.println(oca);
+                            System.out.println("El jugador avanza a la 59 y tira");
+                            dado = r.nextInt(6)+1;
+                            System.out.println("¡Ha sacado un "+dado+" en la tirada extra!");
+                            jugador =59+dado;
+                            System.out.println("El jugador se desplaza a la casilla: "+jugador);
+                            break;
+                        case 59:
+                            System.out.println("¡El jugador ha caido en una oca y vuelve a tirar");
+                            dado = r.nextInt(6)+1;
+                            System.out.println("¡Ha sacado un "+dado+" en la tirada extra!");
+                            jugador =59+dado;
                             break;
                         default:
                             repite = false;
                             break;
                         }
-                    }//fin bucle ocas y reseteo "repite" a true para que compruebe las ocas en la siguiente tirada
+                    }//fin bucle casillas especiales y reseteo "repite" a true para que compruebe las ocas en la siguiente tirada
                     repite=true;
                     
                     //Cambio de turnos y comprobación si hay ganador
