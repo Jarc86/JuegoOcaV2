@@ -102,9 +102,13 @@ public class JuegoOcaV2 {
                         case 13:    
                             System.out.println("El jugador ha caído en La Comba. Pierde un turno... :(");
                             if(turno == 1){
+                                jugador1 = jugador;
+                                turno = 0;
                                 J1pierde1Turno = true;
                                 repite = false;
                             }else{
+                                jugador2=jugador;
+                                turno = 1;
                                 J2pierde1Turno = true;
                                 repite = false;
                             }
@@ -152,9 +156,13 @@ public class JuegoOcaV2 {
                         case 31:
                             System.out.println("El jugador ha caído en El Pozo. Pierde un turno... :( ");
                             if(turno == 1){
+                                jugador1 = jugador;
+                                turno = 0;
                                 J1pierde1Turno = true;
                                 repite = false;
                             }else{
+                                jugador2 = jugador;
+                                turno = 1;
                                 J2pierde1Turno = true;
                                 repite = false;
                             }
@@ -186,9 +194,13 @@ public class JuegoOcaV2 {
                         case 42:
                             System.out.println("El jugador ha caído en El Laberinto. Pierde un turno... :(");
                             if(turno == 1){
+                                jugador1 = jugador;
+                                turno = 0;
                                 J1pierde1Turno = true;
                                 repite = false;
                             }else{
+                                jugador2 = jugador;
+                                turno = 1;
                                 J2pierde1Turno = true;
                                 repite = false;
                             }
@@ -212,10 +224,14 @@ public class JuegoOcaV2 {
                         case 52:
                             System.out.println("El jugador ha caído en La Prision... :(");
                             if(turno == 1){
+                                jugador1 = jugador;
+                                turno = 0;
                                 J1pierde2Turnos = true;
                                 contador1=2;
                                 repite = false;
                             }else{
+                                jugador2 = jugador;
+                                turno = 1;
                                 J2pierde2Turnos = true;
                                 contador2=2;
                                 repite = false;
@@ -244,32 +260,31 @@ public class JuegoOcaV2 {
                             jugador =59+dado;
                             break;
                         default:
+                            if (turno == 1) {
+                                jugador1 = jugador;
+                                if (jugador1 == 63) {
+                                    ganador = "Jugador1";
+                                    fin = true;
+                                }else if(jugador1 > 63){
+                                    jugador1 = 63 - (jugador1-63);
+                                }
+                                turno =0;
+                            }else{
+                                jugador2 = jugador;
+                                if (jugador2 == 63) {
+                                    ganador = "Jugador2";
+                                    fin = true;
+                                }else if(jugador2 > 63){
+                                    jugador2 = 63 - (jugador2-63);         
+                                }
+                                turno =1;
+                            }
                             repite = false;
                             break;
                         }
                     }//fin bucle casillas especiales y reseteo "repite" a true para que compruebe las ocas en la siguiente tirada
                     repite=true;
-                    
-                    //Cambio de turnos y comprobación si hay ganador
-                    if (turno == 1) {
-                        jugador1 = jugador;
-                        if (jugador1 == 63) {
-                            ganador = "Jugador1";
-                            fin = true;
-                        }else if(jugador1 > 63){
-                            jugador1 = 63 - (jugador1-63);
-                        }
-                        turno =0;
-                    }else{
-                        jugador2 = jugador;
-                        if (jugador2 == 63) {
-                            ganador = "Jugador2";
-                            fin = true;
-                        }else if(jugador2 > 63){
-                            jugador2 = 63 - (jugador2-63);         
-                        }
-                        turno =1;
-                    }
+ 
             }while(!fin);
             System.out.println("******** Ganador de la partida ********");
             System.out.println("-------> "+ganador+" <--------");
